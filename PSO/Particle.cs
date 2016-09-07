@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PSO
 {
@@ -12,7 +13,7 @@ namespace PSO
         /// <summary>
         /// Function value for X set (for optimization)
         /// </summary>
-        public double Fx { get; set; }
+        public double Fx { get; set; } = double.MaxValue;
 
         /// <summary>
         /// Velocity
@@ -27,6 +28,13 @@ namespace PSO
         /// <summary>
         /// Function value for P set (for optimization)
         /// </summary>
-        public double Fp { get; set; }
+        public double Fp { get; set; } = double.MaxValue;
+
+        public void UpdateP()
+        {
+            P.Clear();
+            P.AddRange(X);
+            Fp = Fx;
+        }
     }
 }

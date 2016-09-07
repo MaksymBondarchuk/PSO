@@ -14,6 +14,14 @@ namespace PSO
         /// <summary>
         /// Function value for G set (for optimization)
         /// </summary>
-        public double Fg { get; set; }
+        public double Fg { get; set; } = double.MaxValue;
+
+
+        public void UpdateG(IEnumerable<double> p, Function f)
+        {
+            G.Clear();
+            G.AddRange(p);
+            Fg = f.F(G);
+        }
     }
 }
