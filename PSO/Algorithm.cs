@@ -3,8 +3,9 @@
 namespace PSO {
     public class Algorithm {
         #region Constants: private
-        private const double PhiP = 1.5;
-        private const double PhiG = 2;
+        private const double PhiP = 1.49445;
+        private const double PhiG = 1.49445;
+        private const double KillProb = 0.1;
         #endregion
 
         #region Properties: private
@@ -20,20 +21,9 @@ namespace PSO {
             Swarm.Particles.Clear();
             for (var i = 0; i < swarmSize; i++) {
                 var particle = new Particle();
-
-                for (var j = 0; j < Func.Dimensions; j++) {
-                    var rnd = Func.BoundLower + Random.NextDouble() * (Func.BoundUpper - Func.BoundLower);
-                    particle.X.Add(rnd);
-                    particle.P.Add(rnd);
-
-                    var range = Math.Abs(Func.BoundUpper - Func.BoundLower);
-                    particle.V.Add(-range + Random.NextDouble() * 2 * range);
-                }
-
-                particle.Fx = Func.F(particle.X);
-                particle.Fp = particle.Fx;
-
+                particle.Generate(Func);
                 Swarm.Particles.Add(particle);
+                
 
                 if (particle.Fp < Swarm.Fg)
                     Swarm.UpdateG(particle.P, Func);
@@ -73,10 +63,30 @@ namespace PSO {
                         if (particle.Fp < Swarm.Fg)
                             Swarm.UpdateG(particle.P, Func);
                     }
+                    //CheckNewG(particle);
+                    //if (particle.Fx < particle.Fp) {
+                    //    particle.UpdateP();
+                    //    if (particle.Fp < Swarm.Fg)
+                    //        Swarm.UpdateG(particle.P, Func);
+                    //}
+
+                    //if (Random.NextDouble() <= KillProb) {
+                    //    particle.Generate(func);
+                    //}
+                    //CheckNewG(particle);
                 }
 
                 //w *= 0.99;
                 Console.WriteLine($"#{iter,-4} Best G = {Swarm.Fg,-20:0.0000000000} W = {w,-20:0.000000000}");
+            }
+        }
+
+        private void CheckNewG(Particle particle)
+        {
+            if (particle.Fx < particle.Fp) {
+                particle.UpdateP();
+                if (particle.Fp < Swarm.Fg)
+                    Swarm.UpdateG(particle.P, Func);
             }
         }
     }

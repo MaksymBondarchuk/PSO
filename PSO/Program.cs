@@ -63,7 +63,7 @@ namespace PSO {
 
 
             var algorithm = new Algorithm();
-            algorithm.Run(swarmSize: 10, func: rastrigin, iterationsNumber: 10000);
+            algorithm.Run(swarmSize: 10, func: sphere, iterationsNumber: 10000);
 
             //Console.WriteLine(rastrigin.F(new List<double> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }));
         }
