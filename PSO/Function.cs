@@ -13,16 +13,11 @@ namespace PSO
         /// <summary>
         /// Lower boundary
         /// </summary>
-        public double BoundLower { get; set; }
+        public double BoundLower;
 
         /// <summary>
         /// Upper boundary
         /// </summary>
-        public double BoundUpper { get; set; }
-
-        /// <summary>
-        /// Function dimensions
-        /// </summary>
-        public double Dimensions { get; set; }
+        public double BoundUpper;
     }
 }
