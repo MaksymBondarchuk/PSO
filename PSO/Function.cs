@@ -8,16 +8,18 @@ namespace PSO
         /// <summary>
         /// Function
         /// </summary>
-        public Func<List<double>, double> F;
+        public Func<List<double>, double> F { get; set; }
 
         /// <summary>
         /// Lower boundary
         /// </summary>
-        public double BoundLower;
+        public double BoundLower { get; set; }
 
         /// <summary>
         /// Upper boundary
         /// </summary>
-        public double BoundUpper;
+        public double BoundUpper { get; set; }
+
+        public double Dimensions { get; set; }
     }
 }

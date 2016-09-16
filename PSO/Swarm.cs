@@ -4,7 +4,7 @@ namespace PSO
 {
     public class Swarm
     {
-        public List<Particle> Items { get; set; } = new List<Particle>();
+        public List<Particle> Particles { get; set; } = new List<Particle>();
 
         /// <summary>
         /// Swarm's best known position

@@ -63,9 +63,9 @@ namespace PSO {
 
 
             var algorithm = new Algorithm();
-            algorithm.Run(swarmSize: 10, func: sphere, iterationsNumber: 10000);
+            algorithm.Run(swarmSize: 50, func: ackley, iterationsNumber: 10000);
 
-            //Console.WriteLine(rastrigin.F(new List<double> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }));
+            //Console.WriteLine(griewank.F(new List<double> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }));
         }
     }
 }

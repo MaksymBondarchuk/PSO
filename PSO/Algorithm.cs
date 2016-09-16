@@ -3,9 +3,8 @@
 namespace PSO {
     public class Algorithm {
         #region Constants: private
-        private const double PhiP = 1.49445;
-        private const double PhiG = 1.49445;
-        private const double KillProb = 0.1;
+        private const double PhiP = 1;
+        private const double PhiG = 1;
         #endregion
 
         #region Properties: private
@@ -34,7 +33,7 @@ namespace PSO {
             Initialize(swarmSize, func);
 
             var vMax = Math.Abs(Func.BoundUpper - Func.BoundLower) * .1;
-            const double wUp = 1.0;
+            const double wUp = 1.2;
             const double wLow = 0.1;
 
             for (var iter = 0; iter < iterationsNumber; iter++) {
@@ -63,30 +62,10 @@ namespace PSO {
                         if (particle.Fp < Swarm.Fg)
                             Swarm.UpdateG(particle.P, Func);
                     }
-                    //CheckNewG(particle);
-                    //if (particle.Fx < particle.Fp) {
-                    //    particle.UpdateP();
-                    //    if (particle.Fp < Swarm.Fg)
-                    //        Swarm.UpdateG(particle.P, Func);
-                    //}
-
-                    //if (Random.NextDouble() <= KillProb) {
-                    //    particle.Generate(func);
-                    //}
-                    //CheckNewG(particle);
                 }
 
                 //w *= 0.99;
                 Console.WriteLine($"#{iter,-4} Best G = {Swarm.Fg,-20:0.0000000000} W = {w,-20:0.000000000}");
-            }
-        }
-
-        private void CheckNewG(Particle particle)
-        {
-            if (particle.Fx < particle.Fp) {
-                particle.UpdateP();
-                if (particle.Fp < Swarm.Fg)
-                    Swarm.UpdateG(particle.P, Func);
             }
         }
     }
