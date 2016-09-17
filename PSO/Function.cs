@@ -21,5 +21,7 @@ namespace PSO
         public double BoundUpper { get; set; }
 
         public double Dimensions { get; set; }
+
+        public double KillProbability { get; set; }
     }
 }

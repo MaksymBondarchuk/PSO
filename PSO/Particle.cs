@@ -6,7 +6,7 @@ namespace PSO {
         /// <summary>
         /// Coordinates of particle in search-space
         /// </summary>
-        public List<double> X { get; set; } = new List<double>();
+        public List<double> X { get; } = new List<double>();
 
         /// <summary>
         /// function value for X set (for optimization)
@@ -16,17 +16,17 @@ namespace PSO {
         /// <summary>
         /// Velocity
         /// </summary>
-        public List<double> V { get; set; } = new List<double>();
+        public List<double> V { get; } = new List<double>();
 
         /// <summary>
         /// The best known position
         /// </summary>
-        public List<double> P { get; set; } = new List<double>();
+        public List<double> P { get; } = new List<double>();
 
         /// <summary>
         /// function value for P set (for optimization)
         /// </summary>
-        public double Fp { get; set; } = double.MaxValue;
+        public double Fp { get; private set; } = double.MaxValue;
 
         public void UpdateP() {
             P.Clear();
@@ -34,8 +34,10 @@ namespace PSO {
             Fp = Fx;
         }
 
-        public void Generate(Function func) {
-            var random = new Random();
+        public void Generate(Function func, Random random) {
+            X.Clear();
+            P.Clear();
+            V.Clear();
             for (var j = 0; j < func.Dimensions; j++) {
                 var rnd = func.BoundLower + random.NextDouble() * (func.BoundUpper - func.BoundLower);
                 X.Add(rnd);

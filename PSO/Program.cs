@@ -9,7 +9,8 @@ namespace PSO {
                 F = x => { return x.Sum(t => t * t); },
                 BoundLower = -100,
                 BoundUpper = 100,
-                Dimensions = 50
+                Dimensions = 50,
+                KillProbability = 0.01
             };
 
             // ReSharper disable once UnusedVariable
@@ -22,7 +23,8 @@ namespace PSO {
                 },
                 BoundLower = -32.768,
                 BoundUpper = 32.768,
-                Dimensions = 20
+                Dimensions = 20,
+                KillProbability = 0.01
             };
 
             // ReSharper disable once UnusedVariable
@@ -36,7 +38,8 @@ namespace PSO {
                 },
                 BoundLower = -600,
                 BoundUpper = 600,
-                Dimensions = 50
+                Dimensions = 50,
+                KillProbability = 0.2
             };
 
             // ReSharper disable once UnusedVariable
@@ -44,7 +47,8 @@ namespace PSO {
                 F = x => { return x.Sum(t => t * t - 10 * Math.Cos(2 * Math.PI * t) + 10); },
                 BoundLower = -5.12,
                 BoundUpper = 5.12,
-                Dimensions = 30
+                Dimensions = 30,
+                KillProbability = 0.5
             };
 
             // ReSharper disable once UnusedVariable
@@ -56,15 +60,16 @@ namespace PSO {
                         res += 100 * Math.Pow(x[i + 1] - x[i] * x[i], 2) + (x[i] - 1) * (x[i] - 1);
                     return res;
                 },
-                BoundLower = -2.048,
-                BoundUpper = 2.048,
-                Dimensions = 30
+                BoundLower = -5,
+                BoundUpper = 10,
+                Dimensions = 30,
+                KillProbability = 0.02
             };
 
 
             var algorithm = new Algorithm();
-            algorithm.Run(swarmSize: 50, func: ackley, iterationsNumber: 10000);
-
+            algorithm.Run(swarmSize: 50, func: rosenbrock, iterationsNumber: 10000);
+            
             //Console.WriteLine(griewank.F(new List<double> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }));
         }
     }
