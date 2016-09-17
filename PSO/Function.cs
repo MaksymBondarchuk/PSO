@@ -23,5 +23,9 @@ namespace PSO
         public double Dimensions { get; set; }
 
         public double KillProbability { get; set; }
+
+        public double MaxVelocity { get; set; } = 1.2;
+
+        public int IterationsNumber { get; set; } = 10000;
     }
 }

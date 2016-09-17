@@ -33,20 +33,19 @@ namespace PSO
             }
         }
 
-        public void Run(int swarmSize, Function func, int iterationsNumber)
+        public void Run(int swarmSize, Function func)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             
             Initialize(swarmSize, func);
 
             var vMax = Math.Abs(Func.BoundUpper - Func.BoundLower) * .1;
-            const double wUp = 1.2;
             const double wLow = 0.1;
 
             var lastImprovementOn = 0;
-            for (var iter = 0; iter < iterationsNumber; iter++)
+            for (var iter = 0; iter < func.IterationsNumber; iter++)
             {
-                var w = wUp - (wUp - wLow) * iter / iterationsNumber;
+                var w = func.MaxVelocity - (func.MaxVelocity - wLow) * iter / func.IterationsNumber;
 
                 foreach (var particle in Swarm.Particles)
                 {

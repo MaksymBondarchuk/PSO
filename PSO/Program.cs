@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Linq;
 
-namespace PSO {
-    internal static class Program {
-        private static void Main() {
+namespace PSO
+{
+    internal static class Program
+    {
+        private static void Main()
+        {
             // ReSharper disable once UnusedVariable
-            var sphere = new Function {
+            var sphere = new Function
+            {
                 F = x => { return x.Sum(t => t * t); },
                 BoundLower = -100,
                 BoundUpper = 100,
@@ -14,7 +18,8 @@ namespace PSO {
             };
 
             // ReSharper disable once UnusedVariable
-            var ackley = new Function {
+            var ackley = new Function
+            {
                 F = x =>
                 {
                     var _1NaD = 1.0 / x.Count;
@@ -28,7 +33,8 @@ namespace PSO {
             };
 
             // ReSharper disable once UnusedVariable
-            var griewank = new Function {
+            var griewank = new Function
+            {
                 F = x =>
                 {
                     var mul = 1.0;
@@ -43,16 +49,20 @@ namespace PSO {
             };
 
             // ReSharper disable once UnusedVariable
-            var rastrigin = new Function {
+            var rastrigin = new Function
+            {
                 F = x => { return x.Sum(t => t * t - 10 * Math.Cos(2 * Math.PI * t) + 10); },
                 BoundLower = -5.12,
                 BoundUpper = 5.12,
                 Dimensions = 30,
-                KillProbability = 0.5
+                KillProbability = 0.1,
+                MaxVelocity = 0.15,
+                IterationsNumber = 150000
             };
 
             // ReSharper disable once UnusedVariable
-            var rosenbrock = new Function {
+            var rosenbrock = new Function
+            {
                 F = x =>
                 {
                     var res = .0;
@@ -68,8 +78,9 @@ namespace PSO {
 
 
             var algorithm = new Algorithm();
-            algorithm.Run(swarmSize: 50, func: rosenbrock, iterationsNumber: 10000);
-            
+
+            algorithm.Run(swarmSize: 50, func: rastrigin);
+
             //Console.WriteLine(griewank.F(new List<double> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }));
         }
     }
