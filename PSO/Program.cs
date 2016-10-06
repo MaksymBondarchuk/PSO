@@ -79,9 +79,7 @@ namespace PSO
 
             var algorithm = new Algorithm();
 
-            algorithm.Run(swarmSize: 50, func: rastrigin);
-
-            //Console.WriteLine(griewank.F(new List<double> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }));
+            algorithm.Run(swarmSize: 50, func: sphere);
         }
     }
 }
