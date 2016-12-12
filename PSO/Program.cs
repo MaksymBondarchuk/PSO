@@ -79,7 +79,7 @@ namespace PSO
 
             var algorithm = new Algorithm();
 
-            algorithm.Run(swarmSize: 50, func: sphere);
+            algorithm.Run(swarmSize: 50, func: rosenbrock);
         }
     }
 }

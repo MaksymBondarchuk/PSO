@@ -42,6 +42,8 @@ namespace PSO
             var vMax = Math.Abs(Func.BoundUpper - Func.BoundLower) * .1;
             const double wLow = 0.1;
 
+            Particle best = new Particle();
+       
             var lastImprovementOn = 0;
             for (var iter = 0; iter < func.IterationsNumber; iter++)
             {
@@ -75,14 +77,20 @@ namespace PSO
                     {
                         Swarm.UpdateG(particle.P, Func);
                         lastImprovementOn = iter;
+                        best = particle;
                     }
                 }
 
-                Console.WriteLine($"#{iter,-4} Best G = {Swarm.Fg,-7:0.00000} W = {w,-7:0.00000}");
+                
+                Console.WriteLine($"#{iter,-4} Best G = {Swarm.Fg,-16:0.000000000000} W = {w,-7:0.00000}");
             }
 
             watch.Stop();
             Console.WriteLine($"\nLast mprovement was on iteration #{lastImprovementOn}. Time elapsed: {watch.Elapsed}");
+            Console.WriteLine("Coordinates of the best");
+            foreach (var x in best.X)
+                Console.Write($"{x,20}");
+            Console.WriteLine();
         }
     }
 }
